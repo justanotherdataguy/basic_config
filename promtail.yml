@@ -3,8 +3,8 @@ server:
   grpc_listen_port: 0
 
 positions:
-  filename: /etc/conf/promtail/positions/ap5/positions.yaml
-  #filename: /etc/conf/promtail/positions/${FOLDER_NAME}
+  #filename: /etc/conf/promtail/positions/ap5/positions.yaml
+  filename: /etc/conf/promtail/positions/${FOLDER_NAME}/positions.yaml
 
 clients:
   - url: http://ap5.humanbrain.in:3100/loki/api/v1/push
