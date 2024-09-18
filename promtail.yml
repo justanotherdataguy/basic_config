@@ -33,7 +33,7 @@ scrape_configs:
           - localhost
         labels:
           #job: system_logs_ap5
-          job: system_logs_ap5
+          job: system_logs_${FOLDER_NAME}
           __path__: /var/log/*log
 
   - job_name: promtail
