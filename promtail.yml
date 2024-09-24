@@ -58,7 +58,7 @@ scrape_configs:
         labels:
           machine: ${FOLDER_NAME}
           job: container_logs
-          __path__: /var/lib/docker/containers/*/*.log
+          __path__: ${DOCKER_MOUNT_PATH}/containers/*/*.log
           #container: "{{.ContainerName}}"
 
   
