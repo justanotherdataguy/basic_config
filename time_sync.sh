@@ -13,3 +13,6 @@ sudo chronyc -a makestep
 chronyc tracking
 chronyc sources
 sudo hwclock --systohc --utc
+#setting the time to SMT+5:30(Asia/Kolkata)
+sudo timedatectl set-timezone Asia/Kolkata
+
