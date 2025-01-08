@@ -7,58 +7,76 @@ positions:
   filename: /etc/conf/promtail/positions/${FOLDER_NAME}/positions.yaml
 
 clients:
-  - url: http://ap5.humanbrain.in:3100/loki/api/v1/push
+  - url: http://${Loki_Machine}.humanbrain.in:3100/loki/api/v1/push
     batchwait: 5s
     batchsize: 1048576
 
 scrape_configs:
 
-  - job_name: system
+  # - job_name: system
+  #   static_configs:
+  #     - targets:
+  #         - localhost
+  #       labels:
+  #         machine: ${FOLDER_NAME}
+  #         job: system_logs
+  #         __path__: /var/log/*log
+
+  # - job_name: promtail
+  #   static_configs:
+  #     - targets:
+  #         - localhost
+  #       labels:
+  #         machine: ${FOLDER_NAME}
+  #         job: promtail
+  #         __path__: /var/logs/promtail/promtail.log
+
+  # - job_name: node_exporter
+  #   static_configs:
+  #     - targets:
+  #         - localhost
+  #       labels:
+  #         machine: ${FOLDER_NAME}
+  #         job: node_exporter
+  #         __path__: /var/logs/node/node.log
+
+
+  # - job_name: cadvisor
+  #   static_configs:
+  #     - targets:
+  #         - localhost
+  #       labels:
+  #         machine: ${FOLDER_NAME}
+  #         job: cadvisor
+  #         __path__: /var/logs/cadvisor/cadvisor.log
+
+
+  # - job_name: container_logs
+  #   static_configs:
+  #     - targets:
+  #         - localhost
+  #       labels:
+  #         machine: ${FOLDER_NAME}
+  #         job: container_logs
+  #         __path__: ${DOCKER_MOUNT_PATH}/containers/*/*.log
+  #         #container: "{{.ContainerName}}"
+
+  - job_name: iipsrv_nginx_access
     static_configs:
       - targets:
           - localhost
         labels:
           machine: ${FOLDER_NAME}
-          job: system_logs
-          __path__: /var/log/*log
+          job: nginx_access
+          __path__: /var_services/logs/nginx_for_iipsrv/access.log
 
-  - job_name: promtail
+  - job_name: iipsrv_nginx_error
     static_configs:
       - targets:
           - localhost
         labels:
           machine: ${FOLDER_NAME}
-          job: promtail
-          __path__: /var/logs/promtail/promtail.log
-
-  - job_name: node_exporter
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          machine: ${FOLDER_NAME}
-          job: node_exporter
-          __path__: /var/logs/node/node.log
-
-
-  - job_name: cadvisor
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          machine: ${FOLDER_NAME}
-          job: cadvisor
-          __path__: /var/logs/cadvisor/cadvisor.log
-
-
-  - job_name: container_logs
-    static_configs:
-      - targets:
-          - localhost
-        labels:
-          machine: ${FOLDER_NAME}
-          job: container_logs
-          __path__: ${DOCKER_MOUNT_PATH}/containers/*/*.log
-          #container: "{{.ContainerName}}"
+          job: nginx_error
+          __path__: /var_services/logs/nginx_for_iipsrv/nginx/error.log
 
   
